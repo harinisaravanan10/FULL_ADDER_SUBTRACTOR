@@ -64,45 +64,28 @@ Borrow out = A'Bin + A'B + BBin
 ```
 **Program:**
 ```
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. 
-## Full_adder
-module fulladd_top(a,b,cin,sum,carry);
-input a,b,cin;
-output sum,carry;
-wire w1,w2,w3,w4;       
-xor(w1,a,b);
-xor(sum,w1,cin);        
 
-and(w2,a,b);
-and(w3,b,cin);
-and(w4,cin,a);
-
-or(carry,w2,w3,w4);
-endmodule 
-
-## Full_subtractor
-module fullsub_top(a,b,Bin,BO,DIFF);
-input a,b,Bin;
-output BO,DIFF;
-assign DIFF = a ^ b ^ Bin;
-  assign BO = (a & b) | ((a ^ b) & Bin);
+module fulladdsub(a,b,c,sum,carry,BO,DIFF);
+input a,b,c;
+output sum,carry,BO,DIFF;
+assign sum=a^b^c;
+assign carry= a&b | a&c | b&c;
+wire a0;
+not (a0,a);
+assign BO= b&c | a0&c | a0&b;
+assign DIFF=a^b^c;
 endmodule
-
 */Developed by:HARINI S RegisterNumber:212223040058*/
 
 ```
 **RTL Schematic**
 
-![image](https://github.com/harinisaravanan10/FULL_ADDER_SUBTRACTOR/assets/149035598/c01e6c3c-d648-4bad-8a98-66d93df13f1a)
+![image](https://github.com/harinisaravanan10/FULL_ADDER_SUBTRACTOR/assets/149035598/f9de0596-a23a-4ba1-9b25-992a579a1177)
 
 **Output Timing Waveform**
+![image](https://github.com/harinisaravanan10/FULL_ADDER_SUBTRACTOR/assets/149035598/e6bb4d0e-5766-4ff4-96b6-bafabf238cbc)
 
- FULL ADDER
- ![image](https://github.com/harinisaravanan10/FULL_ADDER_SUBTRACTOR/assets/149035598/3411cbc7-4f76-4664-a513-e348a9880eff)
  
-FULL SUBTRACTOR
-![image](https://github.com/harinisaravanan10/FULL_ADDER_SUBTRACTOR/assets/149035598/1cc068c4-6398-4a52-bae8-39c6657c0a9a)
-
 **Result:**
 
 Thus the Full Adder and Full Subtractor circuits are designed and the truth tables is verified using Quartus software.
